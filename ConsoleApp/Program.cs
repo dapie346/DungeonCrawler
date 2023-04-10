@@ -2,6 +2,7 @@
 using ConsoleApp.Inputs;
 using ConsoleApp.Outputs;
 using GameLogic.Entity;
+using System.Xml.Linq;
 
 namespace ConsoleApp
 {
@@ -10,6 +11,7 @@ namespace ConsoleApp
         public static void Main()
         {
             Console.OutputEncoding = System.Text.Encoding.Unicode;
+            
             ushort optionsCount = 4;
             bool exit = false;
             while (!exit)
@@ -64,6 +66,7 @@ namespace ConsoleApp
         {
             Game game = new();
             Output.LoadingMessage();
+            game.InitializePlayer("default");
             game.LoadGame();
             Output.LoadedMessage();
             while (game.GameIsOn && game.Player.Alive)
@@ -74,7 +77,8 @@ namespace ConsoleApp
 
         private static void ShowHighScores()
         {
-            Output.NotImplementedException();
+            Output.ShowOnScreen(Game.ShowHighScores());
+            Output.WaitMessage();
         }
     }
 }

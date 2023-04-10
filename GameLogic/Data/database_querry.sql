@@ -69,8 +69,9 @@ CREATE TABLE [dbo].[Enemy]
 
 CREATE TABLE [dbo].[HighScores]
 (
+    [Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [Name] NCHAR(50) NULL,
-	[Score] NCHAR(10) NULL
+	[Score] INT NULL
 );
 
 CREATE TABLE [dbo].[SAVE_Player] (
@@ -146,7 +147,9 @@ VALUES ('Key', '$'),
 
 INSERT INTO dbo.Enemy (Name, Symbol, Damage, Health)
 VALUES ('Demon', 'E', 7, 20),
-('Wolf', 'E', 8, 10)
+('Wolf', 'E', 8, 10),
+('Zombie', 'E', 12, 25),
+('Invincible Chinese Man', 'E', 100, 100)
 
 INSERT INTO dbo.Ally (Name, Symbol, Message, Bonus, Type)
 VALUES ('Merlin', 'W', 'Welcome to my house, I am merlin the wizard that will boost your health

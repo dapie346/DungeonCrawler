@@ -8,8 +8,8 @@ using GameLogic.Entity.Interaction.Item.Useable;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Numerics;
 using System.Runtime.CompilerServices;
+
 namespace GameLogic;
 
 public class DbManager
@@ -151,6 +151,61 @@ public class DbManager
                 cmdInsert.Parameters.AddWithValue("@Name", player.Name);
                 cmdInsert.Parameters.AddWithValue("@Score", player.Score);
                 cmdInsert.ExecuteNonQuery();
+            }
+        }
+        catch (SqlException e)
+        {
+            throw new RuntimeWrappedException(e);
+        }
+    }
+
+    public static List<Score> GetHighScores()
+    {
+        const string getHighScoresCommand =
+            @"SELECT TOP 20 TRIM(Name) as Name, Score FROM HighScores ORDER BY Score DESC;";
+        try
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                var cmdGet = new SqlCommand(getHighScoresCommand, connection);
+                if (connection.State == ConnectionState.Closed)
+                    connection.Open();
+                SqlDataReader reader = cmdGet.ExecuteReader();
+                List<Score> highScores = new List<Score>();
+                while (reader.Read())
+                {
+                    string name = reader["Name"] as string;
+                    int score = (int)reader["Score"];
+                    highScores.Add(new Score(score, name));
+                }
+                return highScores;
+            }
+        }
+        catch (SqlException e)
+        {
+            throw new RuntimeWrappedException(e);
+        }
+    }
+
+    public static void ClearHighScoresExceptTop20()
+    {
+        const string clearHighScoresCommand =
+            @"WITH TopScores AS (
+            SELECT TOP 20 Id, Score
+            FROM HighScores
+            ORDER BY Score DESC
+        )
+        DELETE FROM HighScores
+        WHERE Id NOT IN (SELECT Id FROM TopScores);";
+
+        try
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                var cmdClear = new SqlCommand(clearHighScoresCommand, connection);
+                if (connection.State == ConnectionState.Closed)
+                    connection.Open();
+                cmdClear.ExecuteNonQuery();
             }
         }
         catch (SqlException e)
@@ -341,7 +396,6 @@ public class DbManager
                 var reader = cmdGet.ExecuteReader();
                 while (reader.Read())
                 {
-                     // Please skip this part, it's a late-night-workaround (not actual solution) ;)
                     string item_name = reader["Item_Name"] as string;
                     int item_Count = (int)reader["Item_Count"];
                     Coordinates position = new Coordinates(300,300);

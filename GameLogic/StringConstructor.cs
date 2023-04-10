@@ -91,5 +91,23 @@ namespace GameLogic
             sbReturn.Append('\n');
             return sbReturn.ToString();
         }
+
+        public static string HighScoresToString(List<Score> highScores)
+        {
+            StringBuilder highScoresString = new();
+            highScoresString.AppendLine("High Scores:\n");
+            if (highScores.Count > 0)
+            {
+                for (int i = 0; i < highScores.Count; i++)
+                {
+                    highScoresString.AppendLine($"{i + 1}. {highScores[i].Name}: {highScores[i].FinalScore}");
+                }
+            }
+            else
+            {
+                highScoresString.AppendLine("There are no Scores to beat yet - be the first!");
+            }
+            return highScoresString.ToString();
+        }
     }
 }

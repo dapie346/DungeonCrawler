@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using GameLogic.DungeonManagement.RoomCreator;
 using GameLogic.Entity;
+using System.Text;
 
 namespace GameLogic;
 
@@ -69,6 +70,11 @@ public class Game
     {
         return StringConstructor.DungeonViewportToString(Dungeon, Player) + StringConstructor.UserStatsToString(Player)
             + StringConstructor.PressHForHelp() + StringConstructor.ItemMessage(Player);
+    }
+
+    public static string ShowHighScores()
+    {
+        return StringConstructor.HighScoresToString(DbManager.GetHighScores());
     }
 
     public static bool TestConnection()

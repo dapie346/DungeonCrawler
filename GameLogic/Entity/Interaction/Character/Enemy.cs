@@ -41,6 +41,7 @@ namespace GameLogic.Entity.Interaction.Character
                 {
                     player.Score = player.Armor + player.Damage + player.Health;
                     DbManager.SaveScore(player);
+                    DbManager.ClearHighScoresExceptTop20();
                     return "Game Over\nYou have been slain";
                 }
                 else
