@@ -11,19 +11,18 @@ public class Game
     public static void Main()
     { 
     }
+
     public static string ConnectionString => ConfigurationManager.AppSettings["connectionString"]!;
     public bool GameIsOn { get; set; }
     public Dungeon Dungeon { get; set; }
     public Player Player { get; set; }
-
-    public List<Score> HighScores;
-
 
     public Game()
     {
         GameIsOn = true;
         Dungeon = new Dungeon(220, 360);
     }
+
     public void InitializePlayer(string name)
     {
         Player = PlayerPlacement(name);
@@ -37,9 +36,9 @@ public class Game
         return new Player(name, Dungeon.Grid[coordinates.X, coordinates.Y]);
     }
 
-    public void LoadGame(Game game) {
-        DbManager.LoadGridfromDB(game);
-        DbManager.LoadPlayerfromDB(game);
+    public void LoadGame() {
+        DbManager.LoadGridfromDB(Dungeon, Player);
+        DbManager.LoadPlayerfromDB(Dungeon, Player);
         DbManager.LoadInventoryfromDB(Player);
     }
 

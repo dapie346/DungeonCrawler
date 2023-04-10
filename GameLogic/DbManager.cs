@@ -8,6 +8,7 @@ using GameLogic.Entity.Interaction.Item.Useable;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 namespace GameLogic;
 
@@ -128,6 +129,29 @@ public class DbManager
                 { "Bonus", bonus },
                 { "Type", type }
             };
+        }
+        catch (SqlException e)
+        {
+            throw new RuntimeWrappedException(e);
+        }
+    }
+
+    public static void SaveScore(Player player)
+    {
+        const string addScoreCommand =
+            @"INSERT INTO HighScores (Name, Score)
+                            VALUES (@Name, @Score);";
+        try
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                var cmdInsert = new SqlCommand(addScoreCommand, connection);
+                if (connection.State == ConnectionState.Closed)
+                    connection.Open();
+                cmdInsert.Parameters.AddWithValue("@Name", player.Name);
+                cmdInsert.Parameters.AddWithValue("@Score", player.Score);
+                cmdInsert.ExecuteNonQuery();
+            }
         }
         catch (SqlException e)
         {
@@ -273,7 +297,7 @@ public class DbManager
 
     }
 
-    public static void LoadPlayerfromDB(Game game)
+    public static void LoadPlayerfromDB(Dungeon dungeon, Player player)
     {
         try
         {
@@ -292,8 +316,8 @@ public class DbManager
                 int armor = (int)reader["Armor"];
                 int health = (int)reader["HP"];
                 int damage = (int)reader["Damage"];
-                game.Player = new Player(name, game.Dungeon.Grid[playerCoorX, playerCoorY], health, armor, damage);
-                game.Player.DMT = (bool)reader["DMT"];
+                player = new Player(name, dungeon.Grid[playerCoorX, playerCoorY], health, armor, damage);
+                player.DMT = (bool)reader["DMT"];
 
                 connection.Close();
             }
@@ -337,7 +361,7 @@ public class DbManager
         }
     }
 
-    public static void LoadGridfromDB(Game game)
+    public static void LoadGridfromDB(Dungeon dungeon, Player player)
     {
         try
         {
@@ -374,10 +398,10 @@ public class DbManager
                     Square square = new Square(position, status, walkable, visible);
                     if (square.Status == SquareStatus.Player)
                     {
-                        game.Player.Square.Status = game.Player.PreviousSquareStatus;
-                        game.Player.Square = square;
+                        player.Square.Status = player.PreviousSquareStatus;
+                        player.Square = square;
                     }
-                    game.Dungeon.Grid[x, y].Interactive = MapEventToLoadToGRidFromDB(interactiveObject, interactiveID, square);
+                    dungeon.Grid[x, y].Interactive = MapEventToLoadToGRidFromDB(interactiveObject, interactiveID, square);
                     i += 1;
                 }
                 connection.Close();

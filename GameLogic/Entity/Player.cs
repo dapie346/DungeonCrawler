@@ -1,6 +1,7 @@
 ﻿using GameLogic.DungeonManagement;
 using GameLogic.DungeonManagement.SquareCreator;
 using GameLogic.Entity.Abstract;
+using GameLogic.Entity.Interaction.Item.Useable;
 
 namespace GameLogic.Entity
 {
@@ -9,6 +10,8 @@ namespace GameLogic.Entity
         public int Armor { get; set; }
         public int Health { get; set; }
         public int Damage { get; set; }
+
+        public int Score { get; set; }
         public bool Alive => Health > 0;
 
         public bool DMT = false;

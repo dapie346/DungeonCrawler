@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS Potion
 DROP TABLE IF EXISTS Weapon
 DROP TABLE IF EXISTS Ally
 DROP TABLE IF EXISTS Enemy
+DROP TABLE IF EXISTS HighScores
 
 DROP TABLE IF EXISTS SAVE_Player
 DROP TABLE IF EXISTS SAVE_Grid
@@ -64,6 +65,12 @@ CREATE TABLE [dbo].[Enemy]
 	[Symbol] NCHAR(10) NULL,
     [Health] INT NULL, 
     [Damage] INT NULL 
+);
+
+CREATE TABLE [dbo].[HighScores]
+(
+    [Name] NCHAR(50) NULL,
+	[Score] NCHAR(10) NULL
 );
 
 CREATE TABLE [dbo].[SAVE_Player] (
