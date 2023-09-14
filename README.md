@@ -1,8 +1,8 @@
-# Dungeon Crawl (Roguelike Game)
+# Dungeon Crawler (Roguelike Game)
 
 ## Introduction
 
-Dungeon Crawl is an exciting and challenging Roguelike game that combines elements of classic tabletop RPGs with modern gameplay mechanics. Explore intricate mazes, battle fierce monsters, and uncover hidden treasures in a tile-based world filled with danger and adventure.
+Dungeon Crawler is an exciting and challenging Roguelike game that combines elements of classic tabletop RPGs with modern gameplay mechanics. Explore intricate mazes, battle fierce monsters, and uncover hidden treasures in a tile-based world filled with danger and adventure.
 
 ## Table of Contents
 
@@ -16,7 +16,7 @@ Dungeon Crawl is an exciting and challenging Roguelike game that combines elemen
 
 ## Features
 
-Dungeon Crawl offers a unique and immersive gaming experience with the following features:
+Dungeon Crawler offers a unique and immersive gaming experience with the following features:
 
 - **Full Roguelike-RPG Experience:** Dive into a world of deep gameplay, strategic decision-making, and character development reminiscent of classic roguelikes.
 
@@ -30,16 +30,16 @@ Dungeon Crawl offers a unique and immersive gaming experience with the following
 
 To embark on your dungeon-crawling adventure, follow these simple steps:
 
-1. Clone the Dungeon Crawl repository from GitHub.
+1. Clone the Dungeon Crawler repository from GitHub.
 2. Before running the game, make sure to create a database named `Roguelike` in your MSSQL Server.
 3. Open the project in your preferred development environment (e.g., Visual Studio).
 4. Build and run the game to start your journey.
 
-This ensures that the game can save and load your progress correctly. Enjoy your adventure in Dungeon Crawl!
+This ensures that the game can save and load your progress correctly. Enjoy your adventure in Dungeon Crawler!
 
 ## Gameplay
 
-Dungeon Crawl faithfully captures the essence of classic Roguelike games:
+Dungeon Crawler faithfully captures the essence of classic Roguelike games:
 
 - **Tile-Based World:** Explore a grid-based world where each step you take matters. Navigate through labyrinthine dungeons and uncover hidden passages.
 
@@ -57,7 +57,7 @@ Dungeon Crawl faithfully captures the essence of classic Roguelike games:
 
 ## Sharing Your Adventure
 
-In the world of Dungeon Crawl, adventurers can connect and discuss their in-game achievements and discoveries with fellow players. Share your victories and strategies through chat groups, or other community platforms to celebrate your successes and exchange tips with others. The Dungeon Crawl community is here to celebrate your adventures!
+In the world of Dungeon Crawler, adventurers can connect and discuss their in-game achievements and discoveries with fellow players. Share your victories and strategies through chat groups, or other community platforms to celebrate your successes and exchange tips with others. The Dungeon Crawl community is here to celebrate your adventures!
 
 ## Changing the Game World
 
@@ -71,7 +71,7 @@ With the ability to explore maps of different sizes and a player-tracking camera
 
 ## Tools and Platforms
 
-Dungeon Crawl was created using the following tools and platforms:
+Dungeon Crawler was created using the following tools and platforms:
 
 ![C#](https://img.shields.io/badge/C%23-239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)
 ![Visual Studio](https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?style=for-the-badge&logo=visual-studio&logoColor=white)
@@ -84,4 +84,4 @@ These tools and platforms were instrumental in bringing this exciting game to li
 
 ## Get Ready for Adventure!
 
-Are you ready to dive into the depths of Dungeon Crawl? Begin your journey now and see if you can conquer the ever-changing labyrinth, defeat formidable foes, and claim the ultimate treasure! Good luck, adventurer!
+Are you ready to dive into the depths of Dungeon Crawler? Begin your journey now and see if you can conquer the ever-changing labyrinth, defeat formidable foes, and claim the ultimate treasure! Good luck, adventurer!
